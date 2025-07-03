@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Crafteur | Agence Événementielle à Marrakech</title>
+    <style>
+        /* Réinitialisation */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Variables - Nouvelle palette plus élégante */
+        :root {
+            --primary-color: #8A6D3B; /* Or antique plus élégant */
+            --secondary-color: #2C2C2C; /* Noir profond */
+            --accent-color: #D9CFC1; /* Beige élégant */
+            --light-color: #F5F5F5; /* Blanc cassé */
+            --dark-color: #1A1A1A; /* Noir intense */
+            --text-color: #3A3A3A; /* Gris foncé pour le texte */
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #755c32;
+            color: white;
+        }
+
+        /* Hero section */
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: white;
+            padding: 10px 25px;
+            border: 2px solid white;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .secondary-button:hover {
+            background-color: white;
+            color: var(--secondary-color);
+        }
+
+        /* About section */
+        .about-section {
+            background-color: var(--light-color);
+            padding: 100px 0;
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-title {
+            font-size: 32px;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-subtitle {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .about-text {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 30px;
+        }
+
+        .about-text strong {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .services-list {
+            text-align: left;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .services-list ul {
+            list-style: none;
+        }
+
+        .services-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 17px;
+        }
+
+        .services-list li:before {
+            content: "•";
+            color: var(--primary-color);
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .tagline {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--primary-color);
+            margin: 40px 0;
+        }
+
+        /* Services section */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #64748B;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .service-content p {
+            color: #64748B;
+            margin-bottom: 20px;
+        }
+
+        .learn-more {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .learn-more:hover {
+            color: #755c32;
+        }
+
+        /* Portfolio section */
+        .portfolio {
+            background-color: var(--accent-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            height: 350px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(42, 42, 42, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-overlay p {
+            color: #E5E7EB;
+            margin-bottom: 20px;
+        }
+
+        .view-project {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--accent-color);
+            padding: 8px 20px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .view-project:hover {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+        }
+
+        /* Testimonials section */
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .testimonial-content {
+            font-size: 18px;
+            font-style: italic;
+            color: #4B5563;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--secondary-color);
+        }
+
+        .author-info p {
+            color: #64748B;
+            font-size: 14px;
+        }
+
+        /* Contact section */
+        .contact {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .contact-info p {
+            margin-bottom: 20px;
+            color: #D1D5DB;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .contact-text {
+            color: #D1D5DB;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #3A3A3A;
+            color: white;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #9CA3AF;
+        }
+
+        .contact-form button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #755c32;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: #D1D5DB;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--primary-color);
+        }
+
+        .footer-about p {
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #3A3A3A;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-color);
+        }
+
+        .footer-links h3 {
+            font-size: 18px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #D1D5DB;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            border-top: 1px solid #3A3A3A;
+            padding-top: 30px;
+            text-align: center;
+            color: #9CA3AF;
+            font-size: 14px;
+        }
+
+        /* Media queries */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">Events<span>Crafteur</span></div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Réalisations</a></li>
+                <li><a href="#temoignages">Témoignages</a></li>
+                <li><a href="#contact" class="cta-button">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Créateurs d'expériences uniques à Marrakech</h1>
+                <p>Laissez Events Crafteur transformer vos idées en évènements inoubliables. Notre expertise locale et internationale fait de nous le partenaire idéal pour organiser votre prochain événement à Marrakech.</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="cta-button">Nos services</a>
+                    <a href="#contact" class="secondary-button">Demander un devis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section avec le nouveau texte -->
+    <section class="about-section" id="about">
+        <div class="container about-container">
+            <h2 class="about-title">L'art de sublimer vos instants précieux</h2>
+            
+            <div class="about-text">
+                Chez <strong>Events Crafteur</strong>, chaque détail compte. Nous imaginons, coordonnons et orchestrons des événements d'exception avec élégance, précision et chaleur humaine. Notre mission : transformer vos idées en moments inoubliables, sans compromis sur le temps ni sur la qualité.
+            </div>
+            
+            <div class="about-text">
+                Mariages de rêve, célébrations intimes ou événements professionnels sur mesure, nous vous accompagnons avec une approche <strong>clé en main</strong>, portée par une sélection rigoureuse de <strong>prestataires qualifiés</strong> et des <strong>lieux d'exception</strong>.
+            </div>
+            
+            <h3 class="about-subtitle">Ce que nous vous offrons :</h3>
+            
+            <div class="services-list">
+                <ul>
+                    <li><strong>Un accompagnement personnalisé</strong>, du concept à la réalisation.</li>
+                    <li><strong>Une gestion millimétrée</strong>, pour un déroulé sans fausse note.</li>
+                    <li><strong>Un carnet d'adresses exclusif</strong>, pour des expériences rares et raffinées.</li>
+                    <li><strong>Un véritable gain de temps</strong>, grâce à notre maîtrise logistique et relationnelle.</li>
+                </ul>
+            </div>
+            
+            <div class="about-text">
+                Parce que chaque instant mérite d'être vécu pleinement, <strong>nous craftons des moments précieux – des expériences qui ont du sens, de la valeur, et qui laissent une empreinte.</strong>
+            </div>
+            
+            <div class="tagline">
+                Avec <strong>Events Crafteur</strong>, vivez l'expérience d'un <strong>event management</strong> haut de gamme, où chaque moment est pensé, vécu et partagé avec émotion. <strong>Crafting valuable moments</strong>, c'est plus qu'un slogan : c'est notre promesse.
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos services sur mesure</h2>
+                <p>Découvrez comment nous pouvons transformer votre vision en réalité avec notre large gamme de services événementiels professionnels.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="service-content">
+                        <h3>Mariages de luxe</h3>
+                        <p>Nos créations de mariages sur mesure incarnent l'élégance marocaine et l'excellence internationale. Chaque détail est soigneusement orchestré pour créer une célébration unique.</p>
+                        <a href="#" class="learn-more">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="service-content">
+                        <h3>Événements corporate</h3>
+                        <p>Conférences, séminaires, team buildings ou lancements de produits, nous créons des expériences professionnelles mémorables qui renforcent votre marque.</p>
+                        <a href="#" class="learn-more">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="service-content">
+                        <h3>Festivals & concerts</h3>
+                        <p>De la conception à la production technique, nous organisons des événements culturels d'envergure qui célèbrent la richesse artistique de Marrakech.</p>
+                        <a href="#" class="learn-more">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos réalisations</h2>
+                <p>Découvrez quelques-uns de nos événements marquants qui témoignent de notre créativité et de notre savoir-faire.</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('/api/placeholder/600/600');"></div>
+                    <div class="portfolio-overlay">
+                        <h3>Mariage royal au Palmeraie Resort</h3>
+                        <p>Un mariage intime de 200 invités dans un décor féerique inspiré par les Mille et Une Nuits.</p>
+                        <a href="#" class="view-project">Voir le projet</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('/api/placeholder/600/600');"></div>
+                    <div class="portfolio-overlay">
+                        <h3>Conférence Tech Innovation Summit</h3>
+                        <p>Organisation complète d'une conférence internationale pour 500 participants du secteur technologique.</p>
+                        <a href="#" class="view-project">Voir le projet</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('/api/placeholder/600/600');"></div>
+                    <div class="portfolio-overlay">
+                        <h3>Festival des Arts Traditionnels</h3>
+                        <p>Un événement culturel de trois jours mettant en valeur le patrimoine artistique marocain.</p>
+                        <a href="#" class="view-project">Voir le projet</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('/api/placeholder/600/600');"></div>
+                    <div class="portfolio-overlay">
+                        <h3>Lancement de produit Luxury Cosmetics</h3>
+                        <p>Création d'une expérience immersive pour le lancement d'une nouvelle gamme de cosmétiques de luxe.</p>
+                        <a href="#" class="view-project">Voir le projet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="temoignages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ce que disent nos clients</h2>
+                <p>Notre plus grande fierté est la satisfaction de nos clients. Découvrez leurs témoignages.</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "Events Crafteur a transformé notre mariage en un conte de fées moderne. Leur équipe a su capturer notre vision et l'élever au-delà de nos espérances. Chaque détail était parfait, et nos invités parlent encore de cette soirée magique."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image" style="background-image: url('/api/placeholder/100/100');"></div>
+                        <div class="author-info">
+                            <h4>Sophia & Karim</h4>
+                            <p>Mariage à La Mamounia, Juillet 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        "Pour notre conférence annuelle, nous cherchions un partenaire capable de gérer tous les aspects logistiques tout en apportant une touche locale. Events Crafteur a brillamment relevé ce défi, offrant une expérience professionnelle irréprochable à nos 300 participants internationaux."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image" style="background-image: url('/api/placeholder/100/100');"></div>
+                        <div class="author-info">
+                            <h4>Thomas Martin</h4>
+                            <p>Directeur Marketing, Global Technologies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Discutons de votre projet</h2>
+                <p>Prêt à créer un événement exceptionnel? Contactez-nous pour une consultation personnalisée.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Comment nous joindre</h2>
+                    <p>Notre équipe est disponible pour répondre à toutes vos questions et vous accompagner dans la conception de votre événement sur mesure.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-text">15 Avenue Mohammed VI, Hivernage, Marrakech, Maroc</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-text">+212 5 24 XX XX XX</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-text">contact@eventscrafteur.com</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" placeholder="Votre nom" required>
+                        
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Votre email" required>
+                        
+                        <label for="phone">Téléphone</label>
+                        <input type="tel" id="phone" placeholder="Votre numéro de téléphone">
+                        
+                        <label for="event">Type d'événement</label>
+                        <input type="text" id="event" placeholder="Ex: Mariage, Conférence, Festival...">
+                        
+                        <label for="message">Votre message</label>
+                        <textarea id="message" rows="5" placeholder="Parlez-nous de votre projet..."></textarea>
+                        
+                        <button type="submit">Envoyer votre demande</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">Events<span>Crafteur</span></div>
+                    <p>Créateurs d'expériences mémorables à Marrakech. Notre expertise locale et notre vision internationale font de nous le partenaire idéal pour tous vos événements.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">IG</a>
+                        <a href="#" class="social-icon">TW</a>
+                        <a href="#" class="social-icon">PT</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Mariages</a></li>
+                        <li><a href="#">Événements corporate</a></li>
+                        <li><a href="#">Festivals & concerts</a></li>
+                        <li><a href="#">Anniversaires de luxe</a></li>
+                        <li><a href="#">Lancements de produits</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="#">À propos de nous</a></li>
+                        <li><a href="#">Notre équipe</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Carrières</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Politique
