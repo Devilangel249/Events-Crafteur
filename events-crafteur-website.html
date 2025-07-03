@@ -5,6 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events Crafteur | Agence Événementielle à Marrakech</title>
     <style>
+        <style>
+/* 1. Fade-in animation keyframes */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+/* 2. Apply fade-in animation (initially hidden, triggered by JS) */
+.section, .about-section, .hero, .portfolio, .contact {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-play-state: paused;
+}
+/* Optional: staggered delay for a cascading effect */
+.section { animation-delay: 0.2s; }
+.about-section { animation-delay: 0.1s; }
+.hero { animation-delay: 0s; }
+.portfolio { animation-delay: 0.3s; }
+.contact { animation-delay: 0.4s; }
+
+/* 3. Button hover effects */
+.cta-button, .secondary-button {
+  transition: transform 0.2s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+}
+.cta-button:hover, .secondary-button:hover {
+  transform: scale(1.07);
+  box-shadow: 0 8px 20px rgba(138,109,59,0.15);
+}
+
+/* 4. Card hover lift */
+.service-card, .portfolio-item {
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+}
+.service-card:hover, .portfolio-item:hover {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 16px 32px rgba(42,42,42,0.08);
+}
+
+/* 5. Social icons animation */
+.social-icon {
+  transition: transform 0.2s, background-color 0.3s;
+}
+.social-icon:hover {
+  transform: scale(1.15) rotate(-6deg);
+}
+</style>
+
+<!-- Add this right before your closing </body> tag -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const animatedSections = document.querySelectorAll('.section, .about-section, .hero, .portfolio, .contact');
+  animatedSections.forEach(section => {
+    // Initially hide
+    section.style.opacity = 0;
+    section.style.animationPlayState = 'paused';
+    // Set up intersection observer for fade in on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          section.style.animationPlayState = 'running';
+          section.style.opacity = 1;
+          observer.unobserve(section);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(section);
+  });
+});
         /* Réinitialisation */
         * {
             margin: 0;
